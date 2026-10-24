@@ -1,0 +1,10 @@
+services:
+  user-service:
+    build: ./user-service
+    ports: ["8081:8081"]
+  order-service:
+    build: ./order-service
+    environment:
+      USER_SERVICE_URL: http://user-service:8081
+    ports: ["8082:8082"]
+    depends_on: [user-service]
