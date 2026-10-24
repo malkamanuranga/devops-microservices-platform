@@ -1,0 +1,9 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata: { name: apps, namespace: devops-demo }
+spec:
+  selector:
+    matchExpressions:
+      - { key: app, operator: In, values: [user-service, order-service] }
+  endpoints:
+    - { port: http, path: /actuator/prometheus, interval: 15s }
